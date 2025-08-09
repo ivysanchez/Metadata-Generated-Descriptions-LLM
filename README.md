@@ -74,7 +74,6 @@ A small sample of 25 rows was used for the LLM generation and evaluation due to 
 ***
 ### Conclusions
 
-Model Comparison (With Augmentation - ResNet50)
 * The models were evaluated based on the selected metrics, with a focus on BERTScore-F1, ROUGE-1, and ROUGE-2 for comparing the quality and similarity of the generated descriptions to the target descriptions.
 * **Results**:
   * 
@@ -123,7 +122,7 @@ To reproduce the results of this project, follow these steps:
 ### Software Setup
 * Required Packages: This project uses the following Python packages:
   * Standard Libraries:
-  * * pandas
+   * pandas
    * numpy
    * matplotlib
    * seaborn
@@ -148,3 +147,4 @@ To reproduce the results of this project, follow these steps:
 
 
 ## **Citations**
+* Piyushjain16. (2023, April 25). Amazon Product Dataset. Kaggle. https://www.kaggle.com/datasets/piyushjain16/amazon-product-data 
