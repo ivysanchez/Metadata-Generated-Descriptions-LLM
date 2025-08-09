@@ -26,19 +26,19 @@ Few-shot prompting consistently outperformed zero-shot across all models.
 
 ### Data
 * **Dataset**: Amazon Product Data
-* **Type**: Tabular data (.csv)
-  * **Input**: `product_id`,`title`, `product_type_id`, `bullet_points`
+* **Type**: Structured tabular dataset (.csv format) containing product metadata and descriptions
+  * **Input**: `product_id`,`title`, `product_type_id`, `bullet_points`, `product_length`
   * **Output**: `description`
 * **Size**: Original dataset contains over 2.2 million rows. A cleaned subset of over 1 million rows was created, and a sample of 25 rows was used for LLM experiments.
-* **Columns Used:** `title`, `product_id_type`,`bullet_points`, `description`, 
-* **Instances (Train, Test, Validation Split)**: N/A (LLM zero-shot and few-shot setting with small data sample of 25)
+* **Columns Used:** `title`, `product_type_id`,`bullet_points`, `description`, 
+* **Train, Test, Validation Split**: Not applicable — experiments were run in a zero-shot and few-shot setting using a small 25-row sample.
 
 
 ***
 
 
 ### Preprocessing
-*   Selected relevant columns (`title`, `bullet_points`, `description`).
+*   Selected relevant columns (`title`, `product_type_id`,`bullet_points`, `description`).
 *   Renamed the `description` column to `target_description`.
 *   Dropped rows with missing values in any of the selected columns.
 *   Ensured text columns were strings.
@@ -58,7 +58,7 @@ Few-shot prompting consistently outperformed zero-shot across all models.
 
 ### Methodology
 
-*   Baseline Model: A simple concatenation of `title`, `product type ID`, and `bullet points`. This method serves as a non-LLM benchmark to compare against generative model outputs.
+*   Baseline Model: A simple concatenation of `title`, `product_type_id`, and `bullet_points`. This method serves as a non-LLM benchmark to compare against generative model outputs.
 *   LLMs Used:
     *   FLAN-T5 (base)
     *   GPT-3.5-turbo (via OpenAI API)
@@ -106,11 +106,11 @@ To reproduce the results of this project, follow these steps:
 
 1. Download the dataset: Download the "Amazon Product Data" dataset from Kaggle (code provided in `Data_Loading` notebook via kagglehub).
 2. Open notebooks in the following order:
-    - `Data_Loader.ipynb`
+    - `Data_Loading.ipynb`
     - `Data_Preprocessing.ipynb`
-    - `Base_model.ipynb`
+    - `Baseline_model.ipynb`
     - `LLM_Generated_Descriptions.ipynb`
-    - `Compare_Evaluation.ipynb`
+    - `Comparison_Evaluation.ipynb`
 
 3. Run the code cells: Execute the code cells/notebooks in a single notebook sequentially to reproduce the results.
    
@@ -122,11 +122,11 @@ To reproduce the results of this project, follow these steps:
 
 | File Name                         | Description                                                                 |
 |----------------------------------|-----------------------------------------------------------------------------|
-| `Data_Loader.ipynb`               | Loads dataset and required libraries                                           |
+| `Data_Loading.ipynb`               | Loads dataset and required libraries                                           |
 | `Data_Preprocessing.ipynb`           | Cleans and formats data                                             |
-| `Base_Model.ipynb` | Baseline description generation                                |
+| `Baseline_Model.ipynb` | Baseline description generation                                |
 | `LLM_Generated_Descriptions.ipynb`      | Runs LLM-based generation                              |
-| `Compare_Evaluation.ipynb`        | Compares models using metrics                                        |
+| `Comparison_Evaluation.ipynb`        | Compares models using metrics                                        |
 | `Final_LLM_Generated.ipynb`     | Full pipeline from data loading to evaluation                       
 
 
