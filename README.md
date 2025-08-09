@@ -3,13 +3,21 @@
 ![](UTA-DataScience-Logo.png)
 
 
-This repository presents a project that explores the use of various Large Language Models (LLMs) to generate product descriptions using metadata from the 'Amazon product data' dataset. The goal is to evaluate how different LLMs and prompting techniques perform in generating high-quality product descriptions based on the provided title, product type ID, and bullet points.
+This repository presents a project that explores the use of various Large Language Models (LLMs) to generate product descriptions using metadata from the ***Amazon Product Data*** dataset. The goal is to evaluate how different LLMs and prompting techniques perform in generating high-quality product descriptions based on the provided title, product type ID, and bullet points.
 
 Dataset: [Amazon Product Data](https://www.kaggle.com/datasets/piyushjain16/amazon-product-data)
 
 ## Overview
 
-The goal of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease). A small sample of 25 rows was used for the LLM generation and evaluation due to computational constraints. The BERTScore-F1 metric was used as the final metric in determining the most successful LLM in this task. The GPT-3.5-Turbo (few-shot) model just slightly outperformed the other models with a BERTScore-f1 of 0.8407, however the other models had scores ranging from 0.810-0.837. As for the other metrics Gemini 1.5 Pro (few-shot) produced the most readable descriptions (Flesch ≈ 54.6), while FLAN-T5 (few-shot) achieved competitive BLEU and ROUGE-2 scores. Few-shot prompting also consistently outperformed zero-shot across all models.
+The aim of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease) with a focus on the BERTScore-F1.
+
+Due to computational limits, only 25 rows from a cleaned 1M+ row subset were used for generation and evaluation.
+* Best overall: GPT-3.5-turbo (few-shot), with the highest BERTScore-F1 (0.8407).
+* Close Competitors: Other models scored between 0.810 and 0.837.
+* Most readable: Gemini 1.5 Pro (few-shot), with the highest Flesch score (~54.6).
+* Best phrasing similarity: FLAN-T5 (few-shot) with strong BLEU and ROUGE-2.
+  
+Few-shot prompting consistently outperformed zero-shot across all models.
 
 
 
@@ -33,8 +41,8 @@ The goal of this project is to generate compelling and informative product descr
 *   Selected relevant columns (`title`, `bullet_points`, `description`).
 *   Renamed the `description` column to `target_description`.
 *   Dropped rows with missing values in any of the selected columns.
-*   Ensured all relevant columns were treated as strings.
-*   Removed rows with empty strings, only whitespace, or the literal string "nan".
+*   Ensured text columns were strings.
+*   Removed empty, whitespace-only, or "nan" strings.
 *   Combined `title`, `product_type_id`, and `bullet_points` into a single `input_text` column for LLM input.
 *   Sampled 25 rows for LLM generation and evaluation.
 
@@ -44,7 +52,7 @@ The goal of this project is to generate compelling and informative product descr
 
 * **Input**: Structured product metadata (`title`, `product_type_id`, `bullet_points`)
 * **Output**: Natutral language product description
-* **Task**: Generate high-quality product descriptions using LLMs with different prompting strategies
+* **Task**: Generate high-quality product descriptions with different prompting strategies
 
 
 
@@ -85,18 +93,18 @@ The goal of this project is to generate compelling and informative product descr
 
 
 ### Future Work
-*  Experimenting with different hyperparameters for each model (learning rate, batch size, number of epochs) to optimize their performance.
-* Exploring more sophisticated prompting techniques, such as Chain-of-Thought prompting or incorporating more diverse few-shot examples, to guide the models toward generating better descriptions.
-* Using different model architectures that might be better suited for text generation from structured data.
-* Combining the predictions of multiple models to potentially leverage their individual strengths and improve overall performance.
-* Increasing the size and diversity of the training data since only a small sample was used (25).
+* Tune hyperparameters (learning rate, batch size, epochs)
+* Explore advanced prompting (Chain-of-Thought, diverse few-shot examples)
+* Test additional architectures suited for structured-to-text generation
+* Use model ensembling for improved outputs
+* Increase training sample size beyond 25 rows
 
 
 ## How to reproduce results
 
 To reproduce the results of this project, follow these steps:
 
-1. Download the dataset: Download the "Amazon product Data" dataset from Kaggle. The notebook contains code to downlload the dataset using 'kagglehub'.
+1. Download the dataset: Download the "Amazon Product Data" dataset from Kaggle (code provided in `Data_Loading` notebook via kagglehub).
 2. Open notebooks in the following order:
     - `Data_Loader.ipynb`
     - `Data_Preprocessing.ipynb`
@@ -114,11 +122,11 @@ To reproduce the results of this project, follow these steps:
 
 | File Name                         | Description                                                                 |
 |----------------------------------|-----------------------------------------------------------------------------|
-| `Data_Loader.ipynb`               | Loads the dataset and neccessary libraries                                            |
-| `Data_Preprocessing.ipynb`           | Preparing data for LLM use                                             |
-| `Base_Model.ipynb` | Creating a baseline model of generated descriptions                                 |
-| `LLM_Generated_Descriptions.ipynb`      | Using 3 different LLMs for text generation                              |
-| `Compare_Evaluation.ipynb`        | Taking a closer look at metrics for comparison                                        |
+| `Data_Loader.ipynb`               | Loads dataset and required libraries                                           |
+| `Data_Preprocessing.ipynb`           | Cleans and formats data                                             |
+| `Base_Model.ipynb` | Baseline description generation                                |
+| `LLM_Generated_Descriptions.ipynb`      | Runs LLM-based generation                              |
+| `Compare_Evaluation.ipynb`        | Compares models using metrics                                        |
 | `Final_LLM_Generated.ipynb`     | Full pipeline from data loading to evaluation                       
 
 
@@ -130,18 +138,15 @@ To reproduce the results of this project, follow these steps:
     * numpy
     * matplotlib
     * seaborn
-    * re
    
   * Additional Libraries:
     * kagglehub (For downloading the dataset from Kaggle)
     * tranformers
-    * datasets
     * accelerate
     * evaluate
     * bert_score
     * nltk
     * rouge_score
-    * textstat
     * openai
     * google-generativeai
 
