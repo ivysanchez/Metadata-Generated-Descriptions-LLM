@@ -29,7 +29,7 @@ The goal of this project is to generate compelling and informative product descr
 ***
 
 
-#### Preprocessing / Clean Up
+### Preprocessing
 *   Selected relevant columns (`title`, `bullet_points`, `description`).
 *   Renamed the `description` column to `target_description`.
 *   Dropped rows with missing values in any of the selected columns.
@@ -77,10 +77,11 @@ The goal of this project is to generate compelling and informative product descr
 | Gemini 1.5 Pro (zero-shot)  | 0.0199 | 0.2086  | 0.0531  | 0.8110       | 43.47    |
 
 
-* FLAN-T5 Model: This model performed reasonably well, particularly with few-shot prompting, achieving the high BLEU and ROUGE-2 scores. This suggests it was good at generating descriptions with similar phrasing to the original text. However, its Flesch Reading Ease score was low, indicating that its generated text might be harder to read.
- * OpenAI GPT-3.5 Model: This model, especially with few-shot prompting, demonstrated strong performance across several metrics, including high ROUGE-1 and BERTScore-F1 scores. It also produced descriptions with relatively high readability (Flesch Reading Ease).
-* Gemini 1.5 Pro Model: While its BLEU and ROUGE-2 scores were low in the few-shot setting, Gemini 1.5 Pro achieved a high Flesch Reading Ease score, suggesting it generated the most readable descriptions. 
-* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions. The few-shot prompting technique generally improved performance for the LLMs.
+* FLAN-T5 Model: Performed well with few-shot prompting, achieving high BLEU and ROUGE-2, indicating strong phrasing similarity, but had low readability (Flesch score).
+ * OpenAI GPT-3.5 Model: Few-shot prompting yielded strong overall performance with high ROUGE-1, BERTScore-F1, and good readability.
+* Gemini 1.5 Pro Model: Lower BLEU and ROUGE-2 but highest readability, producing the most user-friendly text.
+* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions.
+* The few-shot prompting technique generally improved performance for the LLMs.
 
 
 
