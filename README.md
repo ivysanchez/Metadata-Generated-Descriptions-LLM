@@ -9,32 +9,26 @@ Dataset: [Amazon Product Data](https://www.kaggle.com/datasets/piyushjain16/amaz
 
 ## Overview
 
-The goal of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description.
+The goal of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease). A small sample of 25 rows was used for the LLM generation and evaluation due to computational constraints. The BERTScore-F1 metric was used as the 
 
-The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (Baseline, FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease).
-
-A small sample of 25 rows was used for the LLM generation and evaluation due to computational constraints.
 
 
 ## Summary of Work Done
 
 
-
 ### Data
 * **Dataset**: Amazon Product Data
-* **Type**: Tabular data (.csv))
+* **Type**: Tabular data (.csv)
   * **Input**: `product_id`,`title`, `product_type_id`, `bullet_points`
   * **Output**: `description`
 * **Size**: Original dataset contains over 2.2 million rows. A cleaned subset of over 1 million rows was created, and a sample of 25 rows was used for LLM experiments.
-* **Columns Used:** `title`, `bullet_points`, `description`, 
-
-* **Instances (Train, Test, Validation Split)**: 
+* **Columns Used:** `title`, `product_id_type`,`bullet_points`, `description`, 
+* **Instances (Train, Test, Validation Split)**: N/A (LLM zero-shot and few-shot setting with small data sample of 25)
 
 
 ***
 
 
-***verify
 #### Preprocessing / Clean Up
 *   Selected relevant columns (`title`, `bullet_points`, `description`).
 *   Renamed the `description` column to `target_description`.
@@ -48,17 +42,15 @@ A small sample of 25 rows was used for the LLM generation and evaluation due to 
 
 ### Problem Formulation
 
-* **Input**: 
-* **Output**: 
-* **Task**: Generate description using LLMs using different prompt methods
-
-
+* **Input**: Structured product metadata (`title`, `product_type_id`, `bullet_points`)
+* **Output**: Natutral language product description
+* **Task**: Generate high-quality product descriptions using LLMs with different prompting strategies
 
 
 
 ### Methodology
 
-*   Baseline Model: A simple concatenation of title, product type ID, and bullet points.
+*   Baseline Model: A simple concatenation of `title`, `product type ID`, and `bullet points`.
 *   LLMs Used:
     *   FLAN-T5 (base)
     *   GPT-3.5-turbo (via OpenAI API)
@@ -67,8 +59,6 @@ A small sample of 25 rows was used for the LLM generation and evaluation due to 
     *   Zero-shot: Providing the LLM with only the instruction and the input data.
     *   Few-shot: Providing the LLM with the instruction, a few examples of input-output pairs, and the input data.
 * Metrics: BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease
-
-
 
 
 ***
@@ -88,8 +78,8 @@ A small sample of 25 rows was used for the LLM generation and evaluation due to 
 
 
 * FLAN-T5 Model: This model performed reasonably well, particularly with few-shot prompting, achieving the high BLEU and ROUGE-2 scores. This suggests it was good at generating descriptions with similar phrasing to the original text. However, its Flesch Reading Ease score was low, indicating that its generated text might be harder to read.
- * OpenAI GPT-3.5 Model: This model, especially with few-shot prompting, demonstrated strong performance across several metrics, including high ROUGE-1 and BERTScore-F1 scores. It also produced descriptions with relatively high readability (Flesch Reading Ease). The example outputs showed that GPT-3.5 generated more detailed and human-like descriptions compared to FLAN-T5.
-* Gemini 1.5 Pro Model: While its BLEU and ROUGE-2 scores were low in the few-shot setting, Gemini 1.5 Pro achieved a high Flesch Reading Ease score, suggesting it generated the most readable descriptions. The example outputs showed that Gemini 1.5 Pro also produced detailed and well-structured
+ * OpenAI GPT-3.5 Model: This model, especially with few-shot prompting, demonstrated strong performance across several metrics, including high ROUGE-1 and BERTScore-F1 scores. It also produced descriptions with relatively high readability (Flesch Reading Ease).
+* Gemini 1.5 Pro Model: While its BLEU and ROUGE-2 scores were low in the few-shot setting, Gemini 1.5 Pro achieved a high Flesch Reading Ease score, suggesting it generated the most readable descriptions. 
 * Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions. The few-shot prompting technique generally improved performance for the LLMs.
 
 
