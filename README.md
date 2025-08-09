@@ -13,7 +13,7 @@ The aim of this project is to generate compelling and informative product descri
 
 Due to computational limits, only 25 rows from a cleaned 1M+ row subset were used for generation and evaluation.
 * **Best overall:** GPT-3.5-turbo (few-shot), with the highest BERTScore-F1 (0.8407).
-* **Close Competitors:** Other models scored between 0.810 and 0.837.
+* **Close Competitors:** Other models achieved a BERTScore-F1 ~0.83.
 * **Most readable:** Gemini 1.5 Pro (few-shot), with the highest Flesch score (~54.6).
 * **Best phrasing similarity:** FLAN-T5 (few-shot) with strong BLEU and ROUGE-2.
   
