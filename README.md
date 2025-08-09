@@ -9,7 +9,7 @@ Dataset: [Amazon Product Data](https://www.kaggle.com/datasets/piyushjain16/amaz
 
 ## Overview
 
-The goal of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease). A small sample of 25 rows was used for the LLM generation and evaluation due to computational constraints. The BERTScore-F1 metric was used as the 
+The goal of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease). A small sample of 25 rows was used for the LLM generation and evaluation due to computational constraints. The BERTScore-F1 metric was used as the final metric in determining the most successful LLM in this task. The GPT-3.5-Turbo (few-shot) model just slightly outperformed the other models with a BERTScore-f1 of 0.8407, however the other models had scores ranging from 0.810-0.837. As for the other metrics Gemini 1.5 Pro (few-shot) produced the most readable descriptions (Flesch ≈ 54.6), while FLAN-T5 (few-shot) achieved competitive BLEU and ROUGE-2 scores. Few-shot prompting also consistently outperformed zero-shot across all models.
 
 
 
@@ -78,10 +78,11 @@ The goal of this project is to generate compelling and informative product descr
 | FlanT5 (zero-shot)          | 0.0715 | 0.2447  | 0.0845  | 0.8247       | 33.54    |
 | Gemini 1.5 Pro (zero-shot)  | 0.0199 | 0.2086  | 0.0531  | 0.8110       | 43.47    |
 
-* Overall for generating descriptions the GPT-3.5-Turbo(few shot) model was the best performing in terms of the BERTScore- F1. However other models were very close in score such as the Gemini 1.5 Pro(few shot) model.
+* Overall for generating descriptions the GPT-3.5-Turbo (few-shot) model was the best performing in terms of the BERTScore- F1. However other models were very close in score such as the Gemini 1.5 Pro (few-shot) model.
   <img width="981" height="490" alt="Unknown-27" src="https://github.com/user-attachments/assets/a3e5407e-e4a4-46b7-b2f3-f7dc3d421326" />
 
 * The few-shot prompting technique generally led to better performance compared to zero-shot for the LLMs.
+
 
 ### Future Work
 *  Experimenting with different hyperparameters for each model (learning rate, batch size, number of epochs) to optimize their performance.
