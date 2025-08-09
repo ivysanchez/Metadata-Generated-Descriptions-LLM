@@ -12,10 +12,10 @@ Dataset: [Amazon Product Data](https://www.kaggle.com/datasets/piyushjain16/amaz
 The aim of this project is to generate compelling and informative product descriptions from structured metadata. The task is framed as a text generation problem where the input is a combination of product title, product type ID, and bullet points, and the output is a product description. The pipeline includes data loading, data preprocessing (handling missing values and formatting the data), generating descriptions using different LLMs (FLAN-T5, GPT-3.5-turbo, and Gemini 1.5 Pro) with both zero-shot and few-shot prompting, and evaluating the generated descriptions using various metrics (BLEU, ROUGE-1, ROUGE-2, BERTScore-F1, and Flesch Reading Ease) with a focus on the BERTScore-F1.
 
 Due to computational limits, only 25 rows from a cleaned 1M+ row subset were used for generation and evaluation.
-* Best overall: GPT-3.5-turbo (few-shot), with the highest BERTScore-F1 (0.8407).
-* Close Competitors: Other models scored between 0.810 and 0.837.
-* Most readable: Gemini 1.5 Pro (few-shot), with the highest Flesch score (~54.6).
-* Best phrasing similarity: FLAN-T5 (few-shot) with strong BLEU and ROUGE-2.
+* **Best overall:** GPT-3.5-turbo (few-shot), with the highest BERTScore-F1 (0.8407).
+* **Close Competitors:** Other models scored between 0.810 and 0.837.
+* **Most readable:** Gemini 1.5 Pro (few-shot), with the highest Flesch score (~54.6).
+* **Best phrasing similarity:** FLAN-T5 (few-shot) with strong BLEU and ROUGE-2.
   
 Few-shot prompting consistently outperformed zero-shot across all models.
 
