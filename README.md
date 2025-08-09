@@ -64,7 +64,11 @@ The goal of this project is to generate compelling and informative product descr
 ***
 ### Conclusions/Results
 
-* The models were evaluated based on the selected metrics, with a focus on BERTScore-F1, ROUGE-1, and ROUGE-2 for comparing the quality and similarity of the generated descriptions to the target descriptions.
+* FLAN-T5 Model: Performed well with few-shot prompting, achieving high BLEU and ROUGE-2, indicating strong phrasing similarity, but had low readability (Flesch score).
+ * OpenAI GPT-3.5 Model: Few-shot prompting yielded strong overall performance with high ROUGE-1, BERTScore-F1, and good readability.
+* Gemini 1.5 Pro Model: Lower BLEU and ROUGE-2 but highest readability, producing the most user-friendly text.
+* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions.
+* The few-shot prompting technique generally improved performance for the LLMs.
 
 | Model                       | BLEU   | ROUGE-1 | ROUGE-2 | BERTScore-F1 | Flesch   |
 | :-------------------------- | :----- | :------ | :------ | :----------- | :------- |
@@ -76,14 +80,10 @@ The goal of this project is to generate compelling and informative product descr
 | FlanT5 (zero-shot)          | 0.0715 | 0.2447  | 0.0845  | 0.8247       | 33.54    |
 | Gemini 1.5 Pro (zero-shot)  | 0.0199 | 0.2086  | 0.0531  | 0.8110       | 43.47    |
 
+* Overall for generating descriptions the GPT-3.5-Turbo(few shot) model was the best performing in terms of the BERTScore- F1. However other models were very close in score such as the Gemini 1.5 Pro(few shot) model.
+  <img width="981" height="490" alt="Unknown-27" src="https://github.com/user-attachments/assets/a3e5407e-e4a4-46b7-b2f3-f7dc3d421326" />
 
-* FLAN-T5 Model: Performed well with few-shot prompting, achieving high BLEU and ROUGE-2, indicating strong phrasing similarity, but had low readability (Flesch score).
- * OpenAI GPT-3.5 Model: Few-shot prompting yielded strong overall performance with high ROUGE-1, BERTScore-F1, and good readability.
-* Gemini 1.5 Pro Model: Lower BLEU and ROUGE-2 but highest readability, producing the most user-friendly text.
-* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions.
-* The few-shot prompting technique generally improved performance for the LLMs.
-
-
+* The few-shot prompting technique generally leads to better performance compared to zero-shot for the LLMs in this evaluation.
 
 ### Future Work
 *  Experimenting with different hyperparameters for each model (learning rate, batch size, number of epochs) to optimize their performance.
