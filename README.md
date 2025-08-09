@@ -58,7 +58,7 @@ Few-shot prompting consistently outperformed zero-shot across all models.
 
 ### Methodology
 
-*   Baseline Model: A simple concatenation of `title`, `product type ID`, and `bullet points`.
+*   Baseline Model: A simple concatenation of `title`, `product type ID`, and `bullet points`. This method serves as a non-LLM benchmark to compare against generative model outputs.
 *   LLMs Used:
     *   FLAN-T5 (base)
     *   GPT-3.5-turbo (via OpenAI API)
