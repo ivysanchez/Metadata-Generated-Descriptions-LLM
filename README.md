@@ -64,11 +64,9 @@ The goal of this project is to generate compelling and informative product descr
 ***
 ### Conclusions/Results
 
-* FLAN-T5 Model: Performed well with few-shot prompting, achieving high BLEU and ROUGE-2, indicating strong phrasing similarity, but had low readability (Flesch score).
- * OpenAI GPT-3.5 Model: Few-shot prompting yielded strong overall performance with high ROUGE-1, BERTScore-F1, and good readability.
-* Gemini 1.5 Pro Model: Lower BLEU and ROUGE-2 but highest readability, producing the most user-friendly text.
-* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions.
-* The few-shot prompting technique generally improved performance for the LLMs.
+* **FLAN-T5 Model:** Performed well with few-shot prompting, achieving high BLEU and ROUGE-2, indicating strong phrasing similarity, but had low readability (Flesch score).
+* **GPT-3.5 Model:** Few-shot prompting yielded strong overall performance with high ROUGE-1, BERTScore-F1, and good readability.
+* **Gemini 1.5 Pro Model:** Lower BLEU and ROUGE-2 but highest readability, producing the most user-friendly text.
 
 | Model                       | BLEU   | ROUGE-1 | ROUGE-2 | BERTScore-F1 | Flesch   |
 | :-------------------------- | :----- | :------ | :------ | :----------- | :------- |
@@ -83,7 +81,7 @@ The goal of this project is to generate compelling and informative product descr
 * Overall for generating descriptions the GPT-3.5-Turbo(few shot) model was the best performing in terms of the BERTScore- F1. However other models were very close in score such as the Gemini 1.5 Pro(few shot) model.
   <img width="981" height="490" alt="Unknown-27" src="https://github.com/user-attachments/assets/a3e5407e-e4a4-46b7-b2f3-f7dc3d421326" />
 
-* The few-shot prompting technique generally leads to better performance compared to zero-shot for the LLMs in this evaluation.
+* The few-shot prompting technique generally led to better performance compared to zero-shot for the LLMs.
 
 ### Future Work
 *  Experimenting with different hyperparameters for each model (learning rate, batch size, number of epochs) to optimize their performance.
