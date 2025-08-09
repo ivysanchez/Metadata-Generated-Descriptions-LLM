@@ -72,11 +72,25 @@ A small sample of 25 rows was used for the LLM generation and evaluation due to 
 
 
 ***
-### Conclusions
+### Conclusions/Results
 
 * The models were evaluated based on the selected metrics, with a focus on BERTScore-F1, ROUGE-1, and ROUGE-2 for comparing the quality and similarity of the generated descriptions to the target descriptions.
-* **Results**:
-  * 
+
+| Model                       | BLEU   | ROUGE-1 | ROUGE-2 | BERTScore-F1 | Flesch   |
+| :-------------------------- | :----- | :------ | :------ | :----------- | :------- |
+| Gpt-3.5-turbo (few-shot)    | 0.0634 | 0.2745  | 0.0845  | 0.8407       | 50.18    |
+| Gemini 1.5 Pro (few-shot)   | 0.0402 | 0.2640  | 0.0747  | 0.8367       | 54.60    |
+| Gpt-3.5-turbo (zero-shot)   | 0.0464 | 0.2635  | 0.0704  | 0.8356       | 47.72    |
+| Baseline                    | 0.1006 | 0.2889  | 0.1271  | 0.8336       | 33.60    |
+| FlanT5 (few-shot)           | 0.0795 | 0.2608  | 0.1134  | 0.8323       | 35.02    |
+| FlanT5 (zero-shot)          | 0.0715 | 0.2447  | 0.0845  | 0.8247       | 33.54    |
+| Gemini 1.5 Pro (zero-shot)  | 0.0199 | 0.2086  | 0.0531  | 0.8110       | 43.47    |
+
+
+* FLAN-T5 Model: This model performed reasonably well, particularly with few-shot prompting, achieving the high BLEU and ROUGE-2 scores. This suggests it was good at generating descriptions with similar phrasing to the original text. However, its Flesch Reading Ease score was low, indicating that its generated text might be harder to read.
+ * OpenAI GPT-3.5 Model: This model, especially with few-shot prompting, demonstrated strong performance across several metrics, including high ROUGE-1 and BERTScore-F1 scores. It also produced descriptions with relatively high readability (Flesch Reading Ease). The example outputs showed that GPT-3.5 generated more detailed and human-like descriptions compared to FLAN-T5.
+* Gemini 1.5 Pro Model: While its BLEU and ROUGE-2 scores were low in the few-shot setting, Gemini 1.5 Pro achieved a high Flesch Reading Ease score, suggesting it generated the most readable descriptions. The example outputs showed that Gemini 1.5 Pro also produced detailed and well-structured
+* Based on the BERTScore-F1, GPT-3.5-turbo (few-shot) and Gemini 1.5 Pro (few-shot) models performed the best, indicating higher semantic similarity to the original descriptions. The few-shot prompting technique generally improved performance for the LLMs.
 
 
 
@@ -122,28 +136,24 @@ To reproduce the results of this project, follow these steps:
 ### Software Setup
 * Required Packages: This project uses the following Python packages:
   * Standard Libraries:
-   * pandas
-   * numpy
-   * matplotlib
-   * seaborn
-   * re
+    * pandas
+    * numpy
+    * matplotlib
+    * seaborn
+    * re
    
-* Additional Libraries:
-   * kagglehub (For downloading the dataset from Kaggle)
-   * tranformers
-   * datasets
-   * accelerate
-   * evaluate
-   * bert_score
-   * nltk
-   * rouge_score
-   * textstat
-   * openai
-   * google-generativeai
-
-
-
-
+  * Additional Libraries:
+    * kagglehub (For downloading the dataset from Kaggle)
+    * tranformers
+    * datasets
+    * accelerate
+    * evaluate
+    * bert_score
+    * nltk
+    * rouge_score
+    * textstat
+    * openai
+    * google-generativeai
 
 
 ## **Citations**
